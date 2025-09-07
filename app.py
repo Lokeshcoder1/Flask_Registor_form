@@ -6,7 +6,7 @@ import re, os
 app = Flask(__name__)
 app.secret_key = 'super_secret_key_change_me'
 
-# ✅ MySQL Configuration (using environment variables)
+# MySQL Configuration (using environment variables)
 app.config["MYSQL_HOST"] = os.getenv("MYSQLHOST", "ballast.proxy.rlwy.net")
 app.config["MYSQL_USER"] = os.getenv("MYSQLUSER", "root")
 app.config["MYSQL_PASSWORD"] = os.getenv("MYSQLPASSWORD", "wmlaOnnxoAWFTLWmDLODVuWBKCxPlFia")
@@ -20,7 +20,7 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def home():
-    return redirect(url_for('register'))  # ✅ only one home function
+    return redirect(url_for('register'))  # one home function
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -55,7 +55,7 @@ def register():
                            (username, email, mobile, hashed_password))
 
             mysql.connection.commit()
-            flash('✅ Registration successful!', 'success')
+            flash('Registration successful!', 'success')
             return redirect(url_for('register'))
 
         cursor.close()
